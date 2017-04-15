@@ -32,7 +32,7 @@ class Admin::JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     if @job.update(job_params)
-      redirect_to admin_jobs_path
+      redirect_to admin_jobs_path, notice: "Update Success"
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class Admin::JobsController < ApplicationController
     @job = Job.find(params[:id])
 
     @job.destroy
-
+    flash[:alert] = "Group deleted"
     redirect_to admin_jobs_path
   end
 
